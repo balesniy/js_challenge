@@ -10,5 +10,12 @@ function ListNode(x) {
 
 
 function mergeTwoLinkedLists(l1, l2) {
-
+  if (l1 === null) {
+    return l2;
+  }
+  if (l2 === null) {
+    return l1;
+  }
+  const [{ value, next }, tail] = l1.value < l2.value ? [l1, l2] : [l2, l1];
+  return { value, next: mergeTwoLinkedLists(next, tail) };
 }
